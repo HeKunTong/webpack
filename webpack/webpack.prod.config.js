@@ -11,8 +11,9 @@ const rootPath = path.resolve(__dirname, '..');
 
 module.exports = {
   output: {
-    filename: '[name].[hash].js',
-    chunkFilename: '[id].[hash].js',
+    path: path.join(rootPath, 'dist'),
+    filename: 'static/[name].[hash].js',
+    chunkFilename: 'static/[id].[hash].js',
     publicPath: '/' /*/static/*/
   },
   module: {
