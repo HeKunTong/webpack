@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -6,6 +7,9 @@ const hotMiddleware = require('webpack-hot-middleware');
 const app = express();
 const config = require('./webpack.config.js');
 const compiler = webpack(config);
+const rootPath = path.resolve(__dirname, '..');
+
+app.use('/static', express.static(path.join(rootPath, 'static')))
 
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js
 // configuration file as a base.

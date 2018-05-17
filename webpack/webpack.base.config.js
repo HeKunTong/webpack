@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const HappyPack = require('happypack');
 const os = require('os');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
@@ -36,6 +35,14 @@ module.exports = {
         loader: 'happypack/loader?id=babel-loader'
       },
       include: path.join(rootPath, 'src') // 指定需要加载的文件夹
+    }, {
+        test: /\.(css|less)$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader', {
+          loader: 'less-loader',
+          options: {
+            javaScriptEnabled: true
+          }
+        }]
     }, {
       test: /\.(png|jpg|gif)$/,
       use: {

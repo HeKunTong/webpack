@@ -9,8 +9,8 @@ const rootPath = path.resolve(__dirname, '..');
 module.exports = {
   module: {
     rules: [{
-      test: /\.(css|less)$/,
-      use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
+      test: /\.styl$/,
+      use: ['style-loader', 'css-loader', 'postcss-loader', 'stylus-loader'],
     }]
   },
   plugins: [
@@ -20,7 +20,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: path.join(rootPath, 'index.html'),
+      template: path.join(rootPath, 'src', 'index.html'),
       title: 'hello webpack!'
     }),
     new webpack.NamedModulesPlugin(),
