@@ -25,7 +25,13 @@ module.exports = {
       path.join(rootPath, 'src'),
       path.join(rootPath, 'node_modules') // 指定node_modules所在位置 当你import第三方模块式 直接从这个路径下搜寻
     ],
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
+    alias: {
+      ACTION: path.join(rootPath, 'src', 'redux', 'actions'),
+      REDUCER: path.join(rootPath, 'src', 'redux', 'reducers'),
+      STORE: path.join(rootPath, 'src', 'redux', 'store'),
+      UTIL: path.join(rootPath, 'src', 'utils')
+    }
   },
   module: {
     rules: [{

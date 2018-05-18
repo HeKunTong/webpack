@@ -1,11 +1,40 @@
 import React from 'react';
-import { Input } from 'antd';
+import { connect } from 'react-redux';
+import map from 'lodash/map';
+import action from 'ACTION/app/users';
+import { Button } from 'antd';
 
-const App = () => (
-  <div className='container'>
-    <span>这是一个测试！</span>
-    <Input style={{width: '200px'}} defaultValue={12}/>
-  </div>
-);
+const change = (props) => {
+  const { users, fetch }  = props;
+  let list = [{id: 1, name: 'blank', age: 26}];
+  if (users[0].name === list[0].name) {
+    list = [{id: 1, name: 'duck', age: 24}];
+  }
+  fetch(list);
+};
 
-export default App;
+const App = (props) => {
+  console.log('props-----------', props);
+  const { users } = props;
+  return (
+    <div className='container'>
+      {
+        map(users, (user, index) => (
+          <div key={index}>
+            <span style={{marginRight: '10px'}}>{user.name}</span>
+            <span>{user.age}</span>
+          </div>
+        ))
+      }
+      <div>
+        <Button onClick={() => change(props)}>我要换人</Button>
+      </div>
+    </div>
+  );
+};
+
+export default connect(({ app }) => {
+  return {
+    users: app.users
+  };
+}, action)(App);
