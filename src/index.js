@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { store, history } from 'STORE';
-import { Router, Route } from 'react-router-dom';
-import App from './App';
-
+import { store } from 'STORE';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { Home, Test } from './pages';
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
-      <div>
-        <App/>
-      </div>
+    <Router>
+      <Switch>
+        <Route exact path='/' component={Home}/>
+        <Route exact path='/test' component={Test}/>
+      </Switch>
     </Router>
   </Provider>,
   document.getElementById('app')

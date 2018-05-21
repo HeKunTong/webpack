@@ -13,8 +13,7 @@ const change = (props) => {
   fetch(list);
 };
 
-const App = (props) => {
-  console.log('props-----------', props);
+const Home = (props) => {
   const { users } = props;
   return (
     <div className='container'>
@@ -37,4 +36,4 @@ export default connect(({ app }) => {
   return {
     users: app.users
   };
-}, action)(App);
+}, action)(Home);
